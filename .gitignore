@@ -1,0 +1,6 @@
+# Source generations — 94MB of full-size PNGs and the raw video.
+# Kept locally only; the optimised WebP/MP4 in assets/ are what the site uses.
+assets/_originals/
+
+.DS_Store
+*.log

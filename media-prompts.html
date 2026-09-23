@@ -1,0 +1,311 @@
+<title>Wash &amp; Guard Media Prompts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ink:#0B0B0C; --panel:#141417; --panel-2:#1B1B1F; --line:#2A2A30;
+    --gold:#E9B949; --gold-dim:#8A6E27; --text:#EDEAE4; --muted:#8E8B85; --ok:#5FAE6B;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding-inline:20px;padding-block:0 80px}
+  a{color:var(--gold)}
+  code{font-family:var(--mono);font-size:.9em;color:var(--gold)}
+
+  header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(11,11,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .top-in{max-width:900px;margin:0 auto;padding-inline:20px;padding-block:12px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .mark{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);white-space:nowrap}
+  .mark span{color:var(--gold)}
+  .count{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+  .count b{color:var(--gold);font-weight:500}
+  .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;width:100%;}
+  .bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s ease}
+
+  .hero{padding-block:48px 8px}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,46px);line-height:1.04;margin:0 0 14px;letter-spacing:-.02em;text-wrap:balance}
+  .lede{color:var(--muted);max-width:60ch;margin:0}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .fact{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+  .fact b{color:var(--text);font-weight:500}
+
+  h2{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:56px 0 4px}
+  h2 + .sub{color:var(--muted);font-size:14px;margin:0 0 20px;max-width:62ch}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px;overflow:hidden}
+  .card.global{background:var(--panel-2);border-color:var(--gold-dim)}
+  .chead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:14px 16px 10px}
+  .slot{font-family:var(--mono);font-size:12px;color:var(--gold);font-weight:500;white-space:nowrap}
+  .fname{font-family:var(--mono);font-size:12px;color:var(--text)}
+  .role{font-size:13.5px;color:var(--muted)}
+  .dims{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+  pre{margin:0;padding:0 16px 14px;font-family:var(--mono);font-size:12.5px;line-height:1.72;color:var(--text);white-space:pre-wrap;word-break:break-word}
+  .cfoot{display:flex;align-items:center;gap:10px;padding:0 16px 14px}
+  button{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink);background:var(--gold);border:0;border-radius:6px;padding:7px 14px;cursor:pointer;transition:opacity .15s}
+  button:hover{opacity:.85}
+  button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+  button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  button.done{background:var(--ok);color:#06210a}
+  .note{font-size:12.5px;color:var(--muted);padding:0 16px 14px;margin:0;border-top:1px dashed var(--line);padding-top:12px}
+  .note b{color:var(--gold);font-weight:600}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .scroll{overflow-x:auto}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400}
+  td:first-child{font-family:var(--mono);color:var(--gold);white-space:nowrap}
+
+  ol.rules{padding-left:20px;color:var(--muted);max-width:64ch}
+  ol.rules li{margin-bottom:8px}
+  ol.rules b{color:var(--text);font-weight:600}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--gold);color:var(--ink);font-weight:600;font-size:13px;padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:all .22s ease;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="mark">Wash <span>&amp;</span> Guard — Media Pack</div>
+    <div class="count"><b id="n">0</b> / 20 generated</div>
+    <div class="bar"><i id="prog"></i></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>Media for the landing page.</h1>
+    <p class="lede">Every image and video the one-page site needs, rewritten for a car-and-motorbike detailing studio in Petaling Jaya. Nothing here is spare — each slot is a place the landing page actually renders. Tap Copy, paste into Magnific, tick it off.</p>
+    <div class="facts">
+      <span class="fact"><b>19</b> images</span>
+      <span class="fact"><b>1</b> video</span>
+      <span class="fact">Seedream <b>5 Pro</b></span>
+      <span class="fact">Black <b>&amp;</b> gold grade</span>
+    </div>
+  </section>
+
+  <h2>Start here</h2>
+  <p class="sub">Paste these two into the style and negative fields once, then leave them there for the whole session. Every prompt below assumes they are set.</p>
+  <div id="globals"></div>
+
+  <h2>Three rules baked in</h2>
+  <ol class="rules">
+    <li><b>No nouns that turn into text.</b> Generators render the word “sign”, “label” or “brand” as lettering on the image. None of these prompts use them.</li>
+    <li><b>Every person gets ethnicity, age, build and a stated expression.</b> Leave the expression out and you get blank mannequin faces.</li>
+    <li><b>Every number plate is described as blank.</b> Otherwise you get gibberish characters that read as fake at a glance.</li>
+  </ol>
+
+  <div id="sections"></div>
+
+  <h2>Trimmed for a one-page build</h2>
+  <p class="sub">The template ships a gallery page, a contact page and six service detail pages. A landing page renders none of them, so those slots are gone — nine gallery images and a second empty-bay background. They are still written up in <code>MEDIA-PROMPTS.md</code> under Appendix A if a section gets added later.</p>
+
+  <h2>Not generated — handle separately</h2>
+  <div class="scroll">
+  <table>
+    <tr><th>Asset</th><th>What it is</th><th>How it gets made</th></tr>
+    <tr><td>logo.svg</td><td>Wash &amp; Guard wordmark</td><td>Needs the vector file from the client — a flat single-colour horizontal lockup for the header and footer</td></tr>
+    <tr><td>grain.png</td><td>267×267 tiling noise the template lays over dark sections</td><td>Generated in code during the build, no AI needed</td></tr>
+    <tr><td>og-image.jpg</td><td>5000×2625 social share card</td><td>Screenshot of the finished homepage, taken at the end of the build</td></tr>
+  </table>
+  </div>
+
+  <h2>Before you accept an image</h2>
+  <ol class="rules">
+    <li>No gibberish text anywhere, and no characters on the number plate.</li>
+    <li>No badge shape that reads as a real manufacturer.</li>
+    <li>Five fingers per hand, no warped reflections or bent body panels.</li>
+    <li>The grade is gold on black — if there is blue in the shadows, run it again.</li>
+  </ol>
+</div>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+const STYLE = "Shot on a full-frame camera, 35mm or 85mm prime lens, wide aperture, shallow depth of field. Cinematic automotive photography. Very dark near-black background, deep shadows, one strong warm key light plus long vertical white LED strip reflections stretching down the bodywork. Colour grade is charcoal black and gunmetal grey with warm gold-amber highlights — absolutely no blue or cyan cast. Fine natural film grain, realistic surface imperfections, dust in the light beams. Photorealistic editorial photography, not illustration, not a 3D render.";
+const VNEG = "text, captions, subtitles, logo, watermark, faces, people talking, full body, wide shot, fades, dissolves, crossfade, shaky camera, zoom burst, blue lighting, cool colour grade, timelapse, cartoon, cgi, 3d render";
+const NEG = "text, letters, words, numbers, watermark, logo, brand badge, emblem, number plate characters, signage, poster, blue colour cast, cyan lighting, neon purple, teal and orange grade, oversaturated, cartoon, illustration, 3d render, cgi, plastic waxy skin, extra fingers, deformed hands, six fingers, distorted reflections, warped body panels, tilted horizon, snow, autumn leaves, American suburban street, European cobblestone";
+
+const GLOBALS = [
+  {id:"STYLE", file:"style block", role:"Append to every image prompt", dims:"", text:STYLE},
+  {id:"NEG", file:"negative prompt", role:"Use on every image", dims:"", text:NEG},
+  {id:"V-NEG", file:"video negative", role:"Use on the video only", dims:"", text:VNEG}
+];
+
+const SECTIONS = [
+{
+ title:"1 · Hero background video",
+ sub:"The template hero is a multi-shot edit — hard cuts, extreme close-ups, hands and forearms only, never a face. This is <b>one prompt for the whole sequence</b>, four shots inside 8 seconds, so it costs one generation.",
+ items:[
+  {id:"V1", file:"hero-loop.mp4", role:"Hero loop", dims:"1920×1080 · 8s · silent", video:true,
+   text:"An 8-second cinematic sequence of four hard-cut shots, 2 seconds each, no transitions or fades between them. SHOT 1: a pressure washer lance sweeps a thick curtain of white snow foam across the black bonnet of a car, backlit so the foam glows against a black wall. CUT TO SHOT 2: a gloved hand slowly draws a folded microfibre towel across wet black gloss, lifting a clean dry band of mirror finish behind it while water beads catch warm gold light. CUT TO SHOT 3: a gloved hand wipes a cloth across the glossy black and gold fuel tank of a motorcycle, following the curve, a long white light strip reflected in the surface. CUT TO SHOT 4: water sheets off a freshly coated dark grey panel into tight round beads that race away, each catching a pinpoint of gold light. Every shot is an extreme close-up with very shallow depth of field, hands and forearms only, never a face, never a wide view of a whole vehicle. Set in a dark near-black detailing bay lit by one warm gold key light and long white LED strips. Warm gold and black colour grade, absolutely no blue or cyan. Slow constant camera drift within each shot, no shake. Fine film grain, photorealistic footage, no text, no logos.",
+   note:"Use the <b>video negative</b> card above, not the image one. If your model flattens this into a single continuous shot, put each <code>CUT TO</code> on its own line. <b>Shot 3 is the motorbike</b> — it is what tells a visitor this studio does bikes too. Keep the centre of frame calm; the headline sits there."}
+ ]
+},
+{
+ title:"2 · Process — three steps",
+ sub:"The “one standard of excellence” row on the homepage, reused on every service detail page. 16:9, generate at 2400×1350.",
+ items:[
+  {id:"P1", file:"process-01-prep.webp", role:"Preparing", dims:"16:9 · 2400×1350",
+   text:"A Malaysian technician in his early thirties, Malay, short black hair, trimmed beard, plain black work polo shirt, crouched beside the front wing of a dark grey compact crossover, inspecting the paint closely with a focused, concentrated expression. He holds a small handheld inspection light that rakes across the panel and reveals fine swirl marks. The setting is a premium detailing bay: dark grey tiled floor with gold safety striping painted across it, black walls, long white LED strip lights on the ceiling. The car has a blank number plate with no characters and no badges. Three-quarter view from the front, camera low at wing height."},
+  {id:"P2", file:"process-02-treat.webp", role:"Treating", dims:"16:9 · 2400×1350",
+   text:"Close-up over the shoulder of a Chinese-Malaysian technician in his late twenties, black work polo shirt, black nitrile gloves, wearing a look of calm concentration, working a dual-action polishing machine across the rear quarter panel of a black sedan. A thin film of polish spreads under the pad and the panel shows a mirror-deep gloss where he has already passed. Dark detailing bay, gold floor striping, white LED strip lights reflecting in long vertical lines down the paint. The car has no badges and a blank number plate. Tight framing, the machine and the panel fill the frame."},
+  {id:"P3", file:"process-03-deliver.webp", role:"Inspecting &amp; delivering", dims:"16:9 · 2400×1350",
+   text:"An Indian-Malaysian technician in his mid thirties, short black hair, plain black work polo shirt, standing beside the open driver's door of a gleaming dark grey sedan, handing a car key to a customer just out of frame, with a warm, satisfied half-smile. The paint behind him is mirror-perfect and reflects long white LED strip lights. Premium detailing bay, dark grey tiled floor with gold safety striping, black walls. Blank number plate, no badges. Medium-wide shot, warm gold key light on his face."}
+ ]
+},
+{
+ title:"3 · Service cards",
+ sub:"One per service, also used as the hero of each service detail page. Wash &amp; Guard's five services plus motorbike detailing. 16:9, generate at 2400×1350.",
+ items:[
+  {id:"S1", file:"service-wash.webp", role:"Wash &amp; undercarriage", dims:"16:9 · 2400×1350",
+   text:"A silver compact Malaysian hatchback covered in thick white snow foam, mid-wash, inside a dark detailing bay. A technician's arm in a black sleeve and black glove guides a pressure washer lance, sending a fine mist across the roofline. Water runs down the gold safety striping painted on the dark grey tiled floor and the floor reflects the white LED ceiling strips. Blank number plate, no badges. Three-quarter front view, wide framing, backlit so the foam glows against the black wall."},
+  {id:"S2", file:"service-polish.webp", role:"Machine polish", dims:"16:9 · 2400×1350",
+   text:"Tight three-quarter close-up of a black sedan's front wing being machine polished. A gloved hand holds a dual-action polisher with a white foam pad against the panel; half the wing is corrected to a deep liquid-mirror gloss and half still shows a dull hazy finish, with the difference clearly visible along a hard line. Dark detailing bay behind, gold floor striping, long white LED strip reflections running down the door. Blank number plate, no badges."},
+  {id:"S3", file:"service-ceramic.webp", role:"Ceramic coating", dims:"16:9 · 2400×1350",
+   text:"Macro close-up of a gloved hand holding a small coating applicator block wrapped in a suede cloth, drawing a wet ceramic coating across the corner of a black bonnet. The coated section flashes with rainbow high-gloss sheen where the light hits it. Beside the panel sits a plain amber glass dropper bottle with no lettering on it. Dark detailing bay, warm gold key light, long white LED reflections stretching across the paint. Extremely shallow depth of field."},
+  {id:"S4", file:"service-tint.webp", role:"Window tint", dims:"16:9 · 2400×1350",
+   text:"A Malay technician in his late twenties, plain black work polo shirt, black gloves, concentrating intently as he squeegees a dark tint film onto the inside of a car's rear windscreen. His hands press the film flat and a thin bead of water runs to the edge. Shot from outside the glass looking in, so the film's clean dark tone contrasts with the bright white LED strip lights reflecting off the glass. Dark detailing bay, gold floor striping visible through the window. Blank number plate, no badges."},
+  {id:"S5", file:"service-ppf.webp", role:"Paint protection film", dims:"16:9 · 2400×1350",
+   text:"Close-up of two gloved hands laying a large clear protective film sheet over the bonnet of a dark grey compact crossover, the film lifting slightly in a soft curve and catching the light along its edge. A squeegee rests against the panel. The bonnet beneath is flawless and reflects long white LED strip lights. Dark detailing bay, gold safety striping on the floor, black walls. Blank number plate, no badges. Shot from a low front three-quarter angle."},
+  {id:"S6", file:"service-motorbike.webp", role:"Motorbike detailing", dims:"16:9 · 2400×1350",
+   text:"A 150cc Malaysian sport underbone motorcycle with glossy black and gold fairings, on a paddock stand inside a dark detailing bay, being hand-polished by a young Chinese-Malaysian technician in a plain black work polo shirt, kneeling beside it with a focused expression and a microfibre cloth in his gloved hand. The fairing is mirror-glossy and reflects long white LED strip lights. Dark grey tiled floor with gold safety striping, black walls. Blank number plate, no badges, no decals with lettering. Low three-quarter front view."}
+ ]
+},
+{
+ title:"4 · Before / after slider",
+ sub:"<b>Not two prompts.</b> Two independent generations give two different cars — that is what went wrong the first time, and no wording fixes it. Generate the <i>after</i> once, then edit that exact file into the <i>before</i>.",
+ items:[
+  {id:"BA1", file:"ba-after.webp", role:"Step 1 — the base image", dims:"16:9 · 2048×1152",
+   text:"A dark grey mid-size sedan parked at a three-quarter front angle inside a dark detailing bay. The whole car is in frame, centred, with even space on the left and right and clear headroom above the roof. Camera at headlight height, level, 50mm lens, no perspective distortion, no tilt. The car is freshly detailed: liquid-mirror gloss paint, long white LED strip lights reflecting in sharp unbroken vertical lines down the flank, clean glossy black tyres, spotless glass, a warm gold highlight running along the shoulder line. Dark grey tiled floor with gold safety striping, black walls, long white LED strips overhead. Blank number plate with no characters, no badges.",
+   note:"Get this right before step 2. Whole car in frame, level camera, even space either side, nothing cropped, blank plate. Every fault here is inherited by the before image."},
+  {id:"BA2", file:"ba-before.webp", role:"Step 2 — edit of step 1", dims:"16:9 · 2048×1152",
+   text:"Same photograph, same car, same angle, same lighting, same framing. Change only the condition of the surfaces: the paint is covered in a dull film of dried road grime and dust, there is rain spotting and water marks across the glass, brake dust on the wheels, and the finish is flat and matte with no reflections in it. Do not move the camera. Do not change the car, the bay, the lights, the floor or the composition in any way.",
+   note:"Feed the approved after image in as the <b>source image</b>, not a style reference. Magnific: Reimagine, creativity <b>low</b>, resemblance <b>high</b>. Strength/denoise <b>0.25–0.35</b> — higher and it redraws the car.<br><br>Accept only if the car has not moved, the wheels have not rotated and the background lights are in the same place. Flick between the two: anything that jumps is a fail.<br><br>No image-to-image in your tool? Run step 1, note the seed, re-run with the <b>same seed</b> and the step 2 condition words. Close, rarely exact."}
+ ]
+},
+{
+ title:"5 · Review cards",
+ sub:"Each sits above a customer quote. Mix the vehicles so the page reads as a real local customer base. 3:2, generate at 2400×1600.",
+ items:[
+  {id:"R1", file:"review-01.webp", role:"Coating customer", dims:"3:2 · 2400×1600",
+   text:"A glossy black compact crossover parked outside at dusk on wet tarmac, photographed from a low rear three-quarter angle. Water beads sit tight and round across the paintwork. Warm street light and a tropical evening sky behind, blurred rain trees and a low shophouse roofline far in the background. The bodywork is mirror-perfect with sharp reflections. Blank number plate, no badges. Moody, cinematic, warm gold highlights against a near-black car."},
+  {id:"R2", file:"review-02.webp", role:"Interior customer", dims:"3:2 · 2400×1600",
+   text:"Interior of a freshly detailed compact Malaysian car, shot from the rear seat looking forward across the centre console to the windscreen. Black fabric and grey plastic surfaces are spotless with a clean matte finish and no artificial shine, the dashboard is dust-free, the glass is streak-free. Soft daylight comes through the windscreen; tropical greenery is visible outside, heavily blurred. No lettering on any dial or screen. Clean, calm, premium."},
+  {id:"R3", file:"review-03.webp", role:"Big bike customer", dims:"3:2 · 2400×1600",
+   text:"A large-capacity naked motorcycle with a glossy black tank, parked on a paddock stand inside a dark detailing bay. Shot from a low front three-quarter angle. The tank and fairings are mirror-glossy and reflect long white LED strip lights in clean vertical lines; the engine cases and forks are spotless. Dark grey tiled floor with gold safety striping, black walls. Blank number plate, no badges, no decals with lettering."},
+  {id:"R4", file:"review-04.webp", role:"Family car customer", dims:"3:2 · 2400×1600",
+   text:"A silver seven-seater MPV parked inside a dark detailing bay, photographed from a front three-quarter angle. Freshly washed and polished, the paint is clean and bright with long white LED strip reflections along the flank, the wheels are spotless, the glass is clear. Dark grey tiled floor with gold safety striping, black walls. Blank number plate, no badges. Well-lit, clean and honest rather than dramatic."}
+ ]
+},
+{
+ title:"6 · Team portraits",
+ sub:"All three must match: same backdrop, same light, same crop, same wardrobe. Generate the first, then reference it for the other two. Generate at 2400×1355.",
+ items:[
+  {id:"T1", file:"team-01.webp", role:"Founder &amp; lead detailer", dims:"16:9 · 2400×1355",
+   text:"Studio portrait of a Malay man in his late thirties, medium build, short black hair, neatly trimmed beard, warm confident closed-mouth smile, looking straight into the camera with his arms folded. He wears a plain black work polo shirt with no lettering or emblem on it. Lit by a single warm gold key light from the left with strong falloff, against a completely plain dark charcoal backdrop. Centred, waist-up, wide framing with dark empty space either side. Sharp, editorial, premium."},
+  {id:"T2", file:"team-02.webp", role:"Coating &amp; film specialist", dims:"16:9 · 2400×1355",
+   text:"Studio portrait of a Chinese-Malaysian man in his late twenties, slim build, short black hair, clean shaven, calm neutral expression with a slight smile, looking straight into the camera with his arms folded. He wears a plain black work polo shirt with no lettering or emblem on it. Identical lighting to a matching portrait: a single warm gold key light from the left with strong falloff, plain dark charcoal backdrop. Centred, waist-up, wide framing with dark empty space either side."},
+  {id:"T3", file:"team-03.webp", role:"Motorbike specialist", dims:"16:9 · 2400×1355",
+   text:"Studio portrait of an Indian-Malaysian man in his early thirties, athletic build, short black hair, light stubble, relaxed friendly expression, looking straight into the camera with his arms folded. He wears a plain black work polo shirt with no lettering or emblem on it. Identical lighting to a matching portrait: a single warm gold key light from the left with strong falloff, plain dark charcoal backdrop. Centred, waist-up, wide framing with dark empty space either side.",
+   note:"The names and roles under these portraits are placeholders until the client confirms the real team."}
+ ]
+},
+{
+ title:"7 · Section background",
+ sub:"This one image sits behind both the FAQ and the closing call to action. Headlines sit on top of it, so it has to stay empty, dark and low-contrast. 16:9, generate at 2400×1350.",
+ items:[
+  {id:"BG1", file:"bg-faq-cta.webp", role:"Behind the FAQ and closing CTA", dims:"16:9 · 2400×1350",
+   text:"An empty premium detailing bay photographed straight down its length, symmetrical one-point perspective. Long white LED strip lights run along both side walls and the ceiling, converging toward the far end. The dark grey tiled floor is wet and glossy and mirrors the light strips; a gold safety stripe is painted along each side of the floor. Black walls, no vehicles, no people, no equipment on the walls. Very dark, moody, deep shadows, cinematic, empty and quiet."}
+ ]
+}
+];
+
+const KEY = "wg-media-done";
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
+
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._t); t._t = setTimeout(()=>t.classList.remove("show"), 1400);
+}
+
+function copy(text, label){
+  const write = navigator.clipboard && navigator.clipboard.writeText
+    ? navigator.clipboard.writeText(text)
+    : Promise.reject();
+  write.then(()=>toast(label + " copied")).catch(()=>{
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); toast(label + " copied"); }
+    catch(e){ toast("Press ⌘C to copy"); }
+    ta.remove();
+  });
+}
+
+function card(item, opts){
+  opts = opts || {};
+  const el = document.createElement("div");
+  el.className = "card" + (opts.global ? " global" : "");
+  const full = opts.global ? item.text : (item.video ? item.text : item.text + "\n\n" + STYLE);
+  el.innerHTML =
+    '<div class="chead">' +
+      '<span class="slot">' + item.id + '</span>' +
+      '<span class="fname">' + item.file + '</span>' +
+      '<span class="role">' + item.role + '</span>' +
+      (item.dims ? '<span class="dims">' + item.dims + '</span>' : '') +
+    '</div>' +
+    '<pre></pre>' +
+    '<div class="cfoot"></div>' +
+    (item.note ? '<p class="note">' + item.note + '</p>' : '');
+  el.querySelector("pre").textContent = full;
+
+  const foot = el.querySelector(".cfoot");
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = opts.global ? "Copy" : "Copy prompt";
+  b.addEventListener("click", ()=>copy(full, item.id));
+  foot.appendChild(b);
+
+  if (!opts.global){
+    const t = document.createElement("button");
+    t.type = "button"; t.className = "ghost";
+    const sync = ()=>{
+      const on = !!done[item.id];
+      t.textContent = on ? "✓ Generated" : "Mark generated";
+      t.className = on ? "done" : "ghost";
+    };
+    t.addEventListener("click", ()=>{
+      done[item.id] = !done[item.id]; save(); sync(); progress();
+    });
+    sync();
+    foot.appendChild(t);
+  }
+  return el;
+}
+
+function progress(){
+  const total = SECTIONS.reduce((n,s)=>n+s.items.length,0);
+  const n = Object.values(done).filter(Boolean).length;
+  document.getElementById("n").textContent = n;
+  document.getElementById("prog").style.width = (n/total*100) + "%";
+}
+
+const g = document.getElementById("globals");
+GLOBALS.forEach(item => g.appendChild(card(item, {global:true})));
+
+const host = document.getElementById("sections");
+SECTIONS.forEach(sec => {
+  const h = document.createElement("h2"); h.textContent = sec.title; host.appendChild(h);
+  const p = document.createElement("p"); p.className = "sub"; p.innerHTML = sec.sub; host.appendChild(p);
+  sec.items.forEach(item => host.appendChild(card(item)));
+});
+
+progress();
+</script>

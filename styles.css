@@ -102,7 +102,12 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .arrow:hover{background:var(--on-paper);color:var(--paper);transform:translateY(-3px)}
 
 /* ============ nav ============ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:60;height:var(--nav-h)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;height:var(--nav-h);
+  background:transparent;transition:background-color .45s var(--ease)}
+/* Solid bar once scrolled, matching the reference's scrolled header variant.
+   Ink rather than the template's white, because our wordmark is gold and our
+   nav links are white — both vanish on a white bar. No border by request. */
+.nav.scrolled{background:var(--ink)}
 .nav-in{
   height:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut);
   display:flex;align-items:center;gap:36px;

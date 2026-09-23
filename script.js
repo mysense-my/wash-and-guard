@@ -256,3 +256,20 @@
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   });
 })();
+
+/* ---------- 8. scrolled nav ----------
+   The reference swaps to a solid header variant once the page moves. Same idea
+   here, in ink so the gold wordmark and white links stay legible. */
+(function () {
+  var nav = document.getElementById('nav');
+  if (!nav) return;
+  var ticking = false;
+  var apply = function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    ticking = false;
+  };
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+  }, { passive: true });
+  apply();
+})();

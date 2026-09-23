@@ -93,7 +93,14 @@
 
   /* ---------- 5. before / after ----------
      Measured on the reference: clip-path inset right ping-pongs between 8% and 92%,
-     sweeping in ~1.2s with a short dwell at each end. Dragging takes over. */
+     sweeping in ~1.2s with a short dwell at each end. Dragging takes over.
+
+     `pos` is the handle's distance from the left edge. The clipped top layer holds
+     the BEFORE image and is revealed from the left edge out to the handle, so the
+     left of the handle is always the before and the right is always the after —
+     which is what the two labels say. The arrows nudge the handle in the direction
+     they point rather than jumping to a named state, because "show before" is
+     ambiguous once the wipe can run either way. */
   var ba = document.getElementById('ba');
   var baTop = document.getElementById('ba-top');
   var baHandle = document.getElementById('ba-handle');

@@ -19,8 +19,7 @@ The page carries `noindex` on purpose. Before it goes live:
 - **Team names and bios are invented**, and the portraits are AI-generated likenesses, not staff.
 - Service "from" prices are placeholders except the RM 165 bike price. The client's deck prices
   packages, not individual services.
-- Phone, email, opening hours and domain are all placeholders.
-- `WA_NUMBER` in `script.js` needs the real WhatsApp number.
+- Opening hours are a placeholder. Phone and email are the client's real details.
 
 `CONTENT.md` tracks every fact as CONFIRMED, PLACEHOLDER or BLOCKER.
 

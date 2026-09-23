@@ -23,15 +23,15 @@ Every line of copy on the landing page traces to one of three states.
 | Package prices | Shine Starter 330 · Guard Essential 1,650 · Guard Elite 3,200 · Full Armor 6,500 |
 | Bike packages | Bike Shine 165 · Bike Guard 599 · Bike Elite 1,550 |
 | Socials | instagram.com/wash_n_guard · facebook.com/washnguard · tiktok.com/@wash.n.guard |
+| WhatsApp / phone | 011-2616 1356 (+60 11-2616 1356) — client supplied 23 Sep 2026 |
+| Email | wash.guardspa@gmail.com — client supplied 23 Sep 2026 |
 
 ## PLACEHOLDER — replace before launch
 
 | Item | Placeholder used | Why |
 |---|---|---|
-| Phone / WhatsApp | +60 12-345 6789 | Not in the deck |
-| Email | hello@washandguard.my | Not in the deck |
 | Opening hours | Mon–Sat 9:00–19:00, Sun 10:00–17:00 | Not in the deck |
-| Domain | washandguard.my | Not registered yet |
+| Domain | none | Not registered yet. The site links to WhatsApp and Gmail, so nothing depends on it. |
 | Service "from" prices | Wash 80 · Polish 250 · Ceramic 1,200 · Tint 600 · PPF 3,500 | The deck prices **packages**, not individual services. Only the RM 165 bike price is real. |
 | Team names | Three placeholder names | Real team not supplied |
 

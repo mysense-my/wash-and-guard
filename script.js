@@ -213,9 +213,9 @@
 
 /* ---------- 7. booking form -> WhatsApp ----------
    No backend on a static page, so the form composes a WhatsApp message instead.
-   Swap WA_NUMBER for the real one once the client confirms it. */
+   WA_NUMBER is the studio's real WhatsApp line. */
 (function () {
-  var WA_NUMBER = '60123456789';
+  var WA_NUMBER = '601126161356';
   var form = document.getElementById('booking-form');
   if (!form) return;
   var note = document.getElementById('form-note');

@@ -280,3 +280,59 @@
   }, { passive: true });
   apply();
 })();
+
+/* ---------- 9. smooth scrolling ----------
+   Lenis 1.x smooths the native scroll position rather than transforming a
+   wrapper, so the sticky service stack and the IntersectionObserver reveals
+   keep working untouched. Skipped entirely when the viewer asks for reduced
+   motion, and the page still scrolls normally if the script fails to load. */
+(function () {
+  // `reduced` is scoped to the first block, so re-read it here rather than
+  // reaching for a variable this IIFE cannot see.
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lenis = null;
+
+  if (!reduced && typeof Lenis === 'function') {
+    lenis = new Lenis({
+      duration: 1.05,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true,
+      touchMultiplier: 1.6
+    });
+    var raf = function (time) { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+
+  // Anchor links go through Lenis where it is running, and fall back to the
+  // browser's own smooth scroll where it is not.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute('href');
+    if (!id || id === '#') return;
+    var target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    var offset = -(document.querySelector('.nav') || {offsetHeight: 0}).offsetHeight;
+    if (lenis) {
+      lenis.scrollTo(target, { offset: offset, duration: 1.2 });
+    } else {
+      target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+    }
+  });
+
+  // The mobile menu locks the page; Lenis needs telling as well as the body.
+  var burgerEl = document.getElementById('burger');
+  if (burgerEl && lenis) {
+    var sync = function () {
+      if (burgerEl.getAttribute('aria-expanded') === 'true') { lenis.stop(); }
+      else { lenis.start(); }
+    };
+    burgerEl.addEventListener('click', function () { setTimeout(sync, 0); });
+    var menuEl = document.getElementById('mobile-menu');
+    if (menuEl) menuEl.addEventListener('click', function () { setTimeout(sync, 0); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setTimeout(sync, 0);
+    });
+  }
+})();

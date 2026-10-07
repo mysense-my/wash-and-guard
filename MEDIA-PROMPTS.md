@@ -60,27 +60,48 @@ text, captions, subtitles, logo, watermark, faces, people talking, full body, wi
 
 ---
 
-# 2 · PROCESS — 3 images · 16:9 · target **2400×1350**
+# 2 · PROCESS — 3 images · 16:9 · target **2048×1152**
 
-The "Three steps. One standard." row on the homepage, reused on every service detail page.
+The "one standard" row on the homepage. **Re-shot October 2026**: the first set showed a visible face in
+every card, which is where these models give themselves away, and the cars were badge-less generic shapes
+that read as CGI rather than real vehicles.
 
-## P1 — `process-01-prep.webp` — Preparing
+Two rules now apply to this row:
+
+1. **No faces.** Hands, forearms and backs only. Detailing photography is about surfaces and tools anyway,
+   and every AI tell in the first set lived in a face.
+2. **A different car in each card, supplied as a reference photo.** An everyday hatchback in the first, a
+   mid-tier sedan or compact SUV in the second, something nicer in the third. The client takes every kind
+   of vehicle, and three different cars say so without a line of copy.
+
+Suggested references: **Perodua Myvi or Proton Saga** (card 1), **Honda Civic or Proton X50** (card 2),
+anything more expensive, or the motorbike (card 3). Shoot or source the reference three-quarter front,
+whole car in frame, flat daylight, sharp, dark or mid-grey paint. Badges tend to come out garbled, so
+frame them small or crop them.
+
+Run each of these with your own car photograph attached as the reference image. The reference supplies the vehicle only — it will not carry the room, so the bay is described in full in every prompt. Keep the global style block and negative prompt on.
+
+## P1 — `process-01-prep.webp` — Inspection
 
 ```
-A Malaysian technician in his early thirties, Malay, short black hair, trimmed beard, plain black work polo shirt, crouched beside the front wing of a dark grey compact crossover, inspecting the paint closely with a focused, concentrated expression. He holds a small handheld inspection light that rakes across the panel and reveals fine swirl marks. The setting is a premium detailing bay: dark grey tiled floor with gold safety striping painted across it, black walls, long white LED strip lights on the ceiling. The car has a blank number plate with no characters and no badges. Three-quarter view from the front, camera low at wing height.
+Using the supplied photograph only as the reference for the car's exact shape, proportions and model, place that same car inside a dark premium detailing bay. Medium shot from a low front three-quarter angle. A technician in a plain black work polo crouches at the front wing with his back and shoulder to the camera, holding a slim handheld inspection light at a shallow angle across the paint so the beam rakes over the panel and throws fine swirl marks into relief. His head is turned away and cropped out of frame — no face visible anywhere. Dark grey tiled floor with gold safety striping, black walls, long white LED strip lights overhead reflecting down the bodywork. Blank number plate with no characters.
 ```
 
-## P2 — `process-02-treat.webp` — Treating
+## P2 — `process-02-treat.webp` — Treatment
 
 ```
-Close-up over the shoulder of a Chinese-Malaysian technician in his late twenties, black work polo shirt, black nitrile gloves, wearing a look of calm concentration, working a dual-action polishing machine across the rear quarter panel of a black sedan. A thin film of polish spreads under the pad and the panel shows a mirror-deep gloss where he has already passed. Dark detailing bay, gold floor striping, white LED strip lights reflecting in long vertical lines down the paint. The car has no badges and a blank number plate. Tight framing, the machine and the panel fill the frame.
+Tight close-up, no vehicle in full view. Two hands in black nitrile gloves press a dual-action polishing machine with a white foam pad against the rear quarter panel of a glossy dark car, forearms entering from the right edge of frame. The arms are cropped at the elbow — no face, no head, no torso in frame. A thin film of polish spreads under the pad, and the panel behind the pad reads as a deep liquid mirror while the panel ahead of it is still hazy. Dark detailing bay, gold floor striping, long white LED strip lights stretching down the paint in unbroken vertical lines.
 ```
 
-## P3 — `process-03-deliver.webp` — Inspecting & Delivering
+## P3 — `process-03-deliver.webp` — Handover
 
 ```
-An Indian-Malaysian technician in his mid thirties, short black hair, plain black work polo shirt, standing beside the open driver's door of a gleaming dark grey sedan, handing a car key to a customer just out of frame, with a warm, satisfied half-smile. The paint behind him is mirror-perfect and reflects long white LED strip lights. Premium detailing bay, dark grey tiled floor with gold safety striping, black walls. Blank number plate, no badges. Medium-wide shot, warm gold key light on his face.
+Close-up of a car key being handed from one person to another over the open driver's door sill of a freshly detailed car. Only two pairs of hands and forearms are in frame — one in a plain black work polo sleeve, one in a casual shirt sleeve. No faces, no heads, no bodies. The key is held cleanly between fingers, fully formed, with a simple unbranded fob. Behind the hands the car's flank is mirror-perfect and reflects long white LED strip lights. Dark grey tiled floor with gold safety striping, black walls, warm gold key light. Blank number plate, no badges.
 ```
+
+**Check before accepting:** no face or head anywhere in frame, five fingers per hand, the car reads as a
+real model with proper panel gaps and a real grille, blank plate, and the three cards show three
+different vehicles.
 
 ---
 

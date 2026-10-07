@@ -55,7 +55,16 @@ dust = gaussian_filter((dust - dust.min()) / (np.ptp(dust) + 1e-6), 1.2)
 ys = np.linspace(0, 1, H)[:, None]
 settled = np.clip((1.15 - ys * 0.7) ** 2.1, 0, 1.4)          # dust on upward faces
 spray = np.clip((ys - 0.42) / 0.58, 0, 1) ** 1.3 * 1.55      # road spray low down
-weight = np.clip((settled * 0.72 + spray) * (0.30 + 1.0 * np.clip(lum * 1.7, 0, 1)), 0, 1.6)
+weight = np.clip(settled * 0.72 + spray, 0, 1.6)
+
+# Glass, lamp lenses and chrome do not hold dirt the way paint does, and they are
+# the brightest things in the frame. Find them as local highlights — pixels well
+# above their own neighbourhood — and keep the dust off them. Weighting dust by
+# raw luminance instead puts the heaviest grime straight onto the headlamps,
+# which is what gives the whole thing away as a filter.
+local = gaussian_filter(lum, 14)
+spec = np.clip((lum - local - 0.045) / 0.16, 0, 1)
+weight = weight * (1.0 - 0.92 * spec)
 dust_amt = np.clip(dust * weight, 0, 1)[..., None]
 
 # ---- 3. kill the gloss -------------------------------------------------------
@@ -82,6 +91,10 @@ tone = np.array([0.56, 0.53, 0.47]) if light_car else np.array([0.72, 0.70, 0.66
 work = work * (1 - spots[..., None]) + tone * spots[..., None]
 
 # ---- 6. composite over the untouched bay -------------------------------------
+# let the original specular highlights read back through, so lamps and glass
+# keep their shine while the paint around them goes flat
+keep = (spec * 0.85)[..., None] * m
+work = np.clip(work, 0, 1) * (1 - keep) + a * keep
 out = a * (1 - m) + np.clip(work, 0, 1) * m
 halo = np.clip(gaussian_filter(mask, 26) - mask, 0, 1)[..., None]
 out = out * (1 - halo * 0.05) + DUST * (halo * 0.05)

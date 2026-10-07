@@ -38,7 +38,7 @@ print('car luminance %.2f -> %s car' % (car_lum, 'light' if light_car else 'dark
 
 if light_car:
     DUST = np.array([0.36, 0.315, 0.25], dtype=np.float32)
-    STRENGTH, EXPOSURE, LIFT, SOFT, SPOTS = 0.62, 0.84, 0.004, 0.40, 0.22
+    STRENGTH, EXPOSURE, LIFT, SOFT, SPOTS = 0.62, 0.84, 0.004, 0.58, 0.34
 else:
     DUST = np.array([0.62, 0.575, 0.50], dtype=np.float32)
     STRENGTH, EXPOSURE, LIFT, SOFT, SPOTS = 0.30, 0.965, 0.017, 0.20, 0.13
@@ -49,8 +49,19 @@ def octave(scale):
     small = rng.random((max(2, H // scale), max(2, W // scale)))
     return zoom(small, (H / small.shape[0], W / small.shape[1]), order=3)
 
-dust = 0.38 * octave(110) + 0.34 * octave(40) + 0.28 * octave(13)
-dust = gaussian_filter((dust - dust.min()) / (np.ptp(dust) + 1e-6), 1.2)
+def streaks():
+    small = rng.random((max(2, H // 7), max(2, W // 90)))
+    out = zoom(small, (H / small.shape[0], W / small.shape[1]), order=3)
+    return gaussian_filter(out, (7, 0.9))
+
+# Real grime is patchy and runs downward. A smooth field reads as a filter laid
+# over the photo, so this mixes fine texture with vertical run-off streaks and
+# then pushes the contrast up so it breaks into patches rather than a wash.
+dust = (0.28 * octave(110) + 0.26 * octave(40) + 0.28 * octave(11)
+        + 0.18 * streaks())
+dust = (dust - dust.min()) / (np.ptp(dust) + 1e-6)
+dust = np.clip((dust - 0.30) / 0.46, 0, 1)
+dust = gaussian_filter(dust, 0.9)
 
 ys = np.linspace(0, 1, H)[:, None]
 settled = np.clip((1.15 - ys * 0.7) ** 2.1, 0, 1.4)          # dust on upward faces
@@ -70,7 +81,7 @@ dust_amt = np.clip(dust * weight, 0, 1)[..., None]
 # ---- 3. kill the gloss -------------------------------------------------------
 soft = np.asarray(base.filter(ImageFilter.GaussianBlur(3.0))).astype(np.float32) / 255.0
 work = a * (1 - SOFT) + soft * SOFT
-work = np.where(work > 0.62, 0.62 + (work - 0.62) * (0.34 if light_car else 0.58), work)
+work = np.where(work > 0.62, 0.62 + (work - 0.62) * (0.22 if light_car else 0.58), work)
 work = work * EXPOSURE + LIFT
 grey = work.mean(axis=2, keepdims=True)
 work = grey + (work - grey) * (0.70 if light_car else 0.80)
@@ -82,9 +93,9 @@ work += (rng.random((H, W, 1)).astype(np.float32) - 0.5) * 0.034 * dust_amt
 # ---- 5. dried water spots ----------------------------------------------------
 spots = np.zeros((H, W), dtype=np.float32)
 yy, xx = np.mgrid[0:H, 0:W]
-for _ in range(130):
+for _ in range(260):
     cx, cy = rng.integers(0, W), rng.integers(int(H * 0.20), int(H * 0.70))
-    r = rng.uniform(2.5, 8)
+    r = rng.uniform(2, 11)
     spots += np.exp(-(((xx - cx) ** 2 + (yy - cy) ** 2) / (2 * r * r)))
 spots = np.clip(spots, 0, 1) * SPOTS
 tone = np.array([0.56, 0.53, 0.47]) if light_car else np.array([0.72, 0.70, 0.66])
@@ -93,7 +104,7 @@ work = work * (1 - spots[..., None]) + tone * spots[..., None]
 # ---- 6. composite over the untouched bay -------------------------------------
 # let the original specular highlights read back through, so lamps and glass
 # keep their shine while the paint around them goes flat
-keep = (spec * 0.85)[..., None] * m
+keep = (np.clip((spec - 0.55) / 0.45, 0, 1) * 0.55)[..., None] * m
 work = np.clip(work, 0, 1) * (1 - keep) + a * keep
 out = a * (1 - m) + np.clip(work, 0, 1) * m
 halo = np.clip(gaussian_filter(mask, 26) - mask, 0, 1)[..., None]

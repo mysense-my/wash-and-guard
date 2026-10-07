@@ -151,7 +151,8 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .hero-title{font-size:var(--fs-h1);line-height:1}
 .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:56px;flex-wrap:wrap}
 .hero-lede{max-width:430px;display:flex;flex-direction:column;align-items:flex-start;gap:28px}
-.hero-lede p{color:var(--on-ink-mute);font-size:var(--fs-note);line-height:1.4}
+.hero-lede p{color:var(--on-ink-mute);font-size:clamp(17px,1.6vw,23px);line-height:1.42}
+.hero-lede strong{font-weight:500;color:#fff}
 .stats{margin:0;min-width:360px}
 .stat{padding:14px 0;border-top:1px solid var(--line-dark)}
 .stat:first-child{border-top:0}
@@ -300,13 +301,16 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 /* ============ contact ============ */
 .contact{position:relative;overflow:hidden;color:#fff;
   padding-block:clamp(64px,6.95vw,100px)}
-.contact-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.contact-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
 /* The copy column sits over the brightest part of the bay photograph, so the
    scrim is weighted to the left rather than raised evenly, which would flatten
-   the whole image. Mobile stacks the columns, so it gets a vertical one. */
-.contact::before{content:"";position:absolute;inset:0;
-  background:linear-gradient(to right,rgba(6,6,7,.88) 0%,rgba(6,6,7,.78) 32%,
-    rgba(6,6,7,.60) 60%,rgba(6,6,7,.56) 100%)}
+   the whole image. Mobile stacks the columns, so it gets a vertical one.
+
+   z-index matters here: ::before is the first child, so without it the photo
+   paints over the scrim and raising the opacity does nothing at all. */
+.contact::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to right,rgba(5,5,6,.95) 0%,rgba(5,5,6,.90) 34%,
+    rgba(5,5,6,.76) 62%,rgba(5,5,6,.70) 100%)}
 .contact-in{position:relative;z-index:2;display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
 /* A soft shadow handles the LED streaks that run through this column, so the
@@ -352,10 +356,6 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .foot-col a{transition:color .25s var(--ease)}
 .foot-col a:hover{color:var(--gold)}
 .foot-label{color:var(--gold);margin-bottom:6px}
-.foot-mark{font-family:var(--mono);text-align:center;white-space:nowrap;
-  font-size:clamp(30px,12.9vw,196px);line-height:.9;margin:48px 0 -.12em;
-  color:rgba(255,255,255,.035);-webkit-text-stroke:1px rgba(255,255,255,.26)}
-
 /* ============ tablet ============ */
 @media (max-width:1199px){
   :root{--gut:32px}
@@ -396,8 +396,8 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
   .form{padding:26px}
   .field-row{grid-template-columns:1fr}
   .contact-details{grid-template-columns:1fr;gap:22px}
-  .contact::before{background:linear-gradient(to bottom,rgba(6,6,7,.88) 0%,
-    rgba(6,6,7,.80) 48%,rgba(6,6,7,.62) 100%)}
+  .contact::before{background:linear-gradient(to bottom,rgba(5,5,6,.94) 0%,
+    rgba(5,5,6,.88) 48%,rgba(5,5,6,.74) 100%)}
   .foot-in{grid-template-columns:1fr 1fr}
   .foot-brand{grid-column:1/-1}
   .ba-tag{top:12px;font-size:11px;padding:5px 9px}

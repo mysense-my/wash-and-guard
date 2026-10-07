@@ -164,6 +164,8 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .sec-ink{background:var(--ink);color:var(--on-ink)}
 .sec-paper{background:var(--paper);color:var(--on-paper)}
 .sec-white{background:var(--white);color:var(--on-paper)}
+/* The reviews ticker runs edge to edge, so it needs less air beneath it. */
+.sec-tight{padding-bottom:clamp(48px,4.9vw,70px)}
 
 .eyebrow{
   font-family:var(--mono);font-size:var(--fs-mono);line-height:1;
@@ -183,7 +185,7 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .sec-ink .sec-note{color:var(--on-ink-mute)}
 .sec-note-inline{margin-top:24px;align-self:start}
 
-/* ============ trio (process + team) ============ */
+/* ============ trio (process) ============ */
 .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
 .trio-item img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px}
 .trio-item h3{font-size:var(--fs-h3);line-height:1.2;margin:24px 0 10px}
@@ -253,16 +255,6 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .rev blockquote,.rev figcaption{position:relative;z-index:2}
 .rev blockquote{margin:0 0 16px;font-size:var(--fs-h3);line-height:1.3;max-width:32ch}
 .rev figcaption{font-family:var(--mono);font-size:13px;color:var(--on-ink-mute)}
-
-/* ============ team cards ============ */
-.member{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:#111}
-.member img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.member::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(6,6,7,.93) 4%,rgba(6,6,7,.25) 54%,transparent 76%)}
-.member-text{position:absolute;z-index:2;left:30px;right:30px;bottom:30px;color:#fff}
-.member-text .role{font-family:var(--mono);font-size:13px;color:var(--on-ink-mute);margin-bottom:10px}
-.member-text h3{font-size:var(--fs-h3);line-height:1.2;margin-bottom:10px}
-.member-text p:last-child{font-size:var(--fs-body);line-height:1.4;color:var(--on-ink-mute)}
 
 /* ============ faq ============ */
 .faq-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:start}
@@ -372,8 +364,6 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
   .svc::after{background:linear-gradient(to bottom,rgba(6,6,7,.66) 0%,rgba(6,6,7,.26) 30%,
     rgba(6,6,7,.16) 60%,rgba(6,6,7,.70) 100%)}
   .rev{width:84vw;padding:26px}
-  .member{aspect-ratio:3/4}
-  .member-text{left:24px;right:24px;bottom:24px}
   .form{padding:26px}
   .field-row{grid-template-columns:1fr}
   .contact-details{grid-template-columns:1fr;gap:22px}

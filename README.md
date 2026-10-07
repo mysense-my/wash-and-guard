@@ -16,7 +16,6 @@ tools/          headless-Chrome measuring scripts used to build it
 The page carries `noindex` on purpose. Before it goes live:
 
 - **The four reviews are invented.** The business has not opened and has no customers.
-- **Team names and bios are invented**, and the portraits are AI-generated likenesses, not staff.
 - Service "from" prices are placeholders except the RM 165 bike price. The client's deck prices
   packages, not individual services.
 - Opening hours are a placeholder. Phone and email are the client's real details.

@@ -33,17 +33,15 @@ Every line of copy on the landing page traces to one of three states.
 | Opening hours | Mon–Sat 9:00–19:00, Sun 10:00–17:00 | Not in the deck |
 | Domain | none | Not registered yet. The site links to WhatsApp and Gmail, so nothing depends on it. |
 | Service "from" prices | Wash 80 · Polish 250 · Ceramic 1,200 · Tint 600 · PPF 3,500 | The deck prices **packages**, not individual services. Only the RM 165 bike price is real. |
-| Team names | Three placeholder names | Real team not supplied |
 
 ## BLOCKER — cannot go live
 
 | Item | Status |
 |---|---|
-| Four customer testimonials | **Invented.** The business has not opened and has no customers. These are layout placeholders only. Replace with real reviews or delete the section before this page is published. |
-| Team member names and bios | **Invented.** Real names, roles and a photo release are needed. |
+| Four customer testimonials | **Invented.** The business has not opened and has no customers. These are layout placeholders only. Replace with real reviews or delete the section before this page is published. This is the only remaining reason the page carries `noindex`. |
 
-The three team portraits are AI-generated likenesses, not photographs of real staff. They are fine
-for a mockup and must be swapped for real photographs before launch.
+The team section was removed on 7 Oct 2026 at the client's request, which also retired the three
+AI-generated staff portraits and their invented names and bios.
 
 ## Stats in the hero
 

@@ -336,3 +336,49 @@
     });
   }
 })();
+
+/* ---------- 10. brand marquee ----------
+   Continuous drift, same driver as the reviews ticker. Kept separate so that
+   working ticker is left untouched. */
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  var track = document.getElementById('brands-track');
+  var box = document.getElementById('brands-wrap');
+  if (!track || !box || !track.children.length) return;
+
+  var originals = Array.prototype.slice.call(track.children);
+  originals.forEach(function (node) {
+    var clone = node.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+
+  var offset = 0, half = 0, last = 0, visible = false;
+  var measure = function () {
+    half = originals.reduce(function (n, el) {
+      return n + el.getBoundingClientRect().width;
+    }, 0);
+  };
+  measure();
+  window.addEventListener('resize', measure);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; },
+      { threshold: 0 }).observe(box);
+  } else { visible = true; }
+
+  var tick = function (now) {
+    if (!last) last = now;
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    if (visible && half > 0) {
+      offset -= 45 * dt;
+      if (offset <= -half) offset += half;
+      track.style.transform = 'translate3d(' + offset.toFixed(2) + 'px,0,0)';
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+})();

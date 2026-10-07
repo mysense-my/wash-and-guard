@@ -190,6 +190,25 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .trio-item h3{font-size:var(--fs-h3);line-height:1.2;margin:24px 0 10px}
 .trio-item p{font-size:var(--fs-body);line-height:1.4;color:var(--on-paper-mute)}
 
+/* ============ brand marquee ============
+   Names set in type rather than manufacturer logos. A row of badges reads as
+   "our partners", which is both misleading and the thing trademark law guards;
+   names read as a plain statement of what comes through the bay. */
+.brands{overflow:hidden;margin:46px 0 54px;
+  border-block:1px solid rgba(255,255,255,.1);padding-block:22px;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+.brands-track{display:flex;align-items:center;width:max-content;
+  margin:0;padding:0;list-style:none;will-change:transform}
+.brand-item{flex:none;padding-inline:28px;font-family:var(--mono);font-size:16px;
+  line-height:1.2;white-space:nowrap;color:rgba(255,255,255,.58)}
+.brand-item::after{content:"·";margin-left:28px;color:var(--gold);opacity:.55}
+@media (max-width:809px){
+  .brands{margin:34px 0 40px;padding-block:18px}
+  .brand-item{padding-inline:18px;font-size:14px}
+  .brand-item::after{margin-left:18px}
+}
+
 /* ============ services sticky stack ============ */
 .stack{padding-top:8px}
 .svc{

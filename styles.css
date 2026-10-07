@@ -197,13 +197,17 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 }
 .svc:last-child{margin-bottom:0}
 .svc > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* Only as dark as the text needs. The scrim falls away by the middle of the card
+   so the vehicle reads; a soft shadow on the type covers the bright patches. */
 .svc::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(6,6,7,.8) 0%,rgba(6,6,7,.3) 46%,rgba(6,6,7,.1) 100%)}
-.svc-text{position:absolute;z-index:2;top:40px;left:40px;max-width:460px}
+  background:linear-gradient(to bottom,rgba(6,6,7,.64) 0%,rgba(6,6,7,.28) 26%,
+    rgba(6,6,7,.05) 58%,rgba(6,6,7,0) 100%)}
+.svc-text{position:absolute;z-index:2;top:40px;left:40px;max-width:460px;
+  text-shadow:0 1px 20px rgba(4,4,5,.62)}
 .svc-text h3{font-size:var(--fs-svc);line-height:1.1;margin-bottom:14px}
 .svc-text p{font-size:var(--fs-body);line-height:1.4;color:var(--on-ink-mute)}
 .svc-price{position:absolute;z-index:2;top:44px;right:40px;font-family:var(--display);font-weight:500;
-  font-size:var(--fs-h3);line-height:1.1;color:#fff}
+  font-size:var(--fs-h3);line-height:1.1;color:#fff;text-shadow:0 1px 20px rgba(4,4,5,.62)}
 
 /* ============ why us cards ============ */
 .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -365,6 +369,8 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
   .svc{height:auto;aspect-ratio:4/5;top:calc(var(--nav-h) + 16px);margin-bottom:26px}
   .svc-text{top:28px;left:26px;right:26px;max-width:none}
   .svc-price{top:auto;bottom:28px;left:26px;right:auto}
+  .svc::after{background:linear-gradient(to bottom,rgba(6,6,7,.66) 0%,rgba(6,6,7,.26) 30%,
+    rgba(6,6,7,.16) 60%,rgba(6,6,7,.70) 100%)}
   .rev{width:84vw;padding:26px}
   .member{aspect-ratio:3/4}
   .member-text{left:24px;right:24px;bottom:24px}

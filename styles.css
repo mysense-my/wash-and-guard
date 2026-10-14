@@ -190,6 +190,7 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
 .trio-item img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px}
 .trio-item h3{font-size:var(--fs-h3);line-height:1.2;margin:24px 0 10px}
 .trio-item p{font-size:var(--fs-body);line-height:1.4;color:var(--on-paper-mute)}
+.sec-ink .trio-item p{color:var(--on-ink-mute)}
 
 /* ============ brand marquee ============
    Names set in type rather than manufacturer logos. A row of badges reads as

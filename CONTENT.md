@@ -48,3 +48,20 @@ AI-generated staff portraits and their invented names and bios.
 Deliberately chosen so that all three are true today: **5** speciality services, **2 & 4** wheels,
 **3** dedicated work bays. No "cars detailed" count and no Google rating, because a business that
 has not opened has neither.
+
+## The studio section and the contact background — visualisations, not photographs
+
+Four images were built from the client's own fit-out photographs (Drive, 14 Oct 2026) using
+Magnific's image editor: `bg-faq-cta`, `studio-01-bays`, `studio-02-reception`, `studio-03-lounge`.
+
+The room geometry in each is real — their walls, ceiling, mezzanine, glass partition, and the gold
+stripe on the wall where it actually runs rather than on the floor where the earlier generated
+images wrongly put it. Everything else is a visualisation of how the space will look finished:
+flooring, lighting, equipment, furniture and vehicles are all generated.
+
+This is the same category as the architect renders already in the client's deck, so it is
+reasonable before opening. **Swap all four for real photography once the fit-out is done**, and do
+not describe them to customers as photographs of the premises in the meantime.
+
+The cars in `bg-faq-cta` were matched to reference photographs of a compact hatchback and a compact
+SUV supplied by the client, so they read as the vehicles their customer base actually drives.

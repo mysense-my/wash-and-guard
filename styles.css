@@ -307,14 +307,10 @@ a:focus-visible .roll .roll-b,button:focus-visible .roll .roll-b{transform:trans
    the whole image. Mobile stacks the columns, so it gets a vertical one.
 
    z-index matters here: ::before is the first child, so without it the photo
-   paints over the scrim and raising the opacity does nothing at all.
-
-   The right half carries a solid form panel, so scrim there buys no legibility
-   and only hides the studio behind it. It stays heavy on the left where the
-   copy sits and lifts across to the right. */
+   paints over the scrim and raising the opacity does nothing at all. */
 .contact::before{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(to right,rgba(5,5,6,.95) 0%,rgba(5,5,6,.90) 34%,
-    rgba(5,5,6,.58) 60%,rgba(5,5,6,.44) 100%)}
+    rgba(5,5,6,.76) 62%,rgba(5,5,6,.70) 100%)}
 .contact-in{position:relative;z-index:2;display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
 /* A soft shadow handles the LED streaks that run through this column, so the
